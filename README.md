@@ -2,7 +2,7 @@
 
 ## Use npm start to display on localhost 3000.
 
-
+You can then search for any Github member and learn more about that person. 
 
 Boilerplated with [Create React App](https://github.com/facebook/create-react-app).
 
