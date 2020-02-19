@@ -1,9 +1,13 @@
-Hi Guys,
-my first React App. More to come!
-Cheers,
-Julian
+## Hi Guys,
+## my first React App. More to come!
+## Cheers,
+## Julian
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Use npm start to diaply an localhost 3000.
+
+
+
+Boilerplated with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
