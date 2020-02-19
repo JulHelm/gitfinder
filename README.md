@@ -1,7 +1,5 @@
-## Hi Guys,
-## my first React App. More to come!
-## Cheers,
-## Julian
+## Hi Guys, my first React App. More to come!
+## Cheers, Julian
 
 ## Use npm start to diaply an localhost 3000.
 
