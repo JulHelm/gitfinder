@@ -1,3 +1,8 @@
+Hi Guys,
+my first React App. More to come!
+Cheers,
+Julian
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
