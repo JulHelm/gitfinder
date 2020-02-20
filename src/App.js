@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 import axios from 'axios';
 import Search from './components/users/Search';
-import Alert from './components/layout/Alert'
+import Alert from './components/layout/Alert';
+import About from './components/pages/About';
 
 class App extends React.Component {
   state = {
     users: [],
     loading: false,
-    alert: null,
+    alert: null
   };
 
   //search users from github
@@ -29,25 +32,46 @@ class App extends React.Component {
     this.setState({
       users: [],
       loading: false,
-      alert: null,
-    })
-  }
+      alert: null
+    });
+  };
 
   setAlert = (msg, type) => {
-    this.setState({alert: {msg, type}})
-    setTimeout(() => this.setState({alert: null}), 3000);
-  }
+    this.setState({ alert: { msg, type } });
+    setTimeout(() => this.setState({ alert: null }), 3000);
+  };
 
   render() {
     return (
-      <div className='App'>
-        <Navbar />
-        <div className='container'>
-          <Alert alert={this.state.alert} />
-          <Search setAlert={this.setAlert} searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={this.state.users.length>0}/>
-          <Users loading={this.state.loading} users={this.state.users} />
+      <Router>
+        <div className='App'>
+          <Navbar />
+          <div className='container'>
+            <Alert alert={this.state.alert} />
+            <Switch>
+              <Route
+                exact
+                path='/'
+                render={props => (
+                  <Fragment>
+                    <Search
+                      setAlert={this.setAlert}
+                      searchUsers={this.searchUsers}
+                      clearUsers={this.clearUsers}
+                      showClear={this.state.users.length > 0}
+                    />
+                    <Users
+                      loading={this.state.loading}
+                      users={this.state.users}
+                    />
+                  </Fragment>
+                )}
+              />
+              <Route exact path="/About" component={About} />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }

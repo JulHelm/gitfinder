@@ -21,7 +21,7 @@ export class Search extends Component {
     //arrowfunction does not nee bind(this)
     e.preventDefault(); //otherwise it prints to a file
     if (this.state.text === '') {
-      this.props.setAlert('Please enter something', 'light');
+      this.props.setAlert('Please enter something', 'danger');
     } else {
       this.props.searchUsers(this.state.text);
       this.setState({ text: '' });
