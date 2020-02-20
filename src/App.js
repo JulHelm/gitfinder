@@ -8,12 +8,14 @@ import axios from 'axios';
 import Search from './components/users/Search';
 import Alert from './components/layout/Alert';
 import About from './components/pages/About';
+import User from './components/users/User';
 
 class App extends React.Component {
   state = {
     users: [],
     loading: false,
-    alert: null
+    alert: null,
+    user: {}
   };
 
   //search users from github
@@ -26,6 +28,17 @@ class App extends React.Component {
       {process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
     this.setState({ users: res.data.items, loading: false });
+  };
+
+  //Get a single User
+  getUser = async username => {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?client_id=$
+      {process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=$
+      {process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    this.setState({ user: res.data, loading: false });
   };
 
   clearUsers = () => {
@@ -67,7 +80,19 @@ class App extends React.Component {
                   </Fragment>
                 )}
               />
-              <Route exact path="/About" component={About} />
+              <Route exact path='/about' component={About} />
+              <Route
+                exact
+                path='/user/:login'
+                render={routeProps => (
+                  <User
+                    {...routeProps}
+                    getUser={this.getUser}
+                    user={this.state.user}
+                    loading={this.state.loading}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </div>
